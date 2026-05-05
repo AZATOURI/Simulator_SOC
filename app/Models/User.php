@@ -22,7 +22,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
+
+    public function alertLogs()
+    {
+    return $this->hasMany(\App\Models\AlertLog::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
