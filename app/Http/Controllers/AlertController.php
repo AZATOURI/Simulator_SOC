@@ -7,7 +7,7 @@ use App\Models\AlertLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AlertController extends Controller
+class AlertController
 {
     private function adminOnly(): void
     {
@@ -275,5 +275,65 @@ class AlertController extends Controller
             ->paginate(15);
 
         return view('alerts.history', compact('logs'));
+    }
+
+    public function addNote(Request $request, Alert $alert)
+    {
+        $data = $request->validate([
+            'note' => ['required', 'string', 'min:5', 'max:120'],
+        ]);
+
+        try {
+            AlertLog::create([
+                'alert_id' => $alert->id,
+                'user_id' => auth::id(),
+                'action' => 'Investigation note: ' . $data['note'],
+                'old_status' => $alert->status,
+                'new_status' => $alert->status,
+            ]);
+
+            return back()->with('success', 'Investigation note added successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error while adding note.');
+        }
+    }
+
+    public function sendReport(Request $request, Alert $alert)
+    {
+        $data = $request->validate([
+            'report_target' => ['required', 'in:SOC Manager,Team Lead,CISO'],
+            'report_summary' => ['required', 'string', 'min:10', 'max:100'],
+        ]);
+
+        try {
+            AlertLog::create([
+                'alert_id' => $alert->id,
+                'user_id' => auth::id(),
+                'action' => 'Incident report sent to ' . $data['report_target'] . ': ' . $data['report_summary'],
+                'old_status' => $alert->status,
+                'new_status' => $alert->status,
+            ]);
+
+            return back()->with('success', 'Incident report sent successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error while sending report.');
+        }
+    }
+
+    public function escalate(Alert $alert)
+    {
+        try {
+            AlertLog::create([
+                'alert_id' => $alert->id,
+                'user_id' => auth::id(),
+                'action' => 'Alert escalated to SOC Manager',
+                'old_status' => $alert->status,
+                'new_status' => $alert->status,
+            ]);
+
+            return back()->with('success', 'Alert escalated successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error while escalating alert.');
+        }
     }
 }

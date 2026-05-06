@@ -2,9 +2,14 @@
 
 use App\Http\Controllers\AlertController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return redirect()->route('dashboard');
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    }
+
+    return redirect()->route('choose-role');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -20,9 +25,20 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/alerts/{alert}', [AlertController::class, 'destroy'])->name('alerts.destroy');
 
     Route::post('/alerts/{alert}/status', [AlertController::class, 'changeStatus'])->name('alerts.status');
+    Route::post('/alerts/{alert}/note', [AlertController::class, 'addNote'])->name('alerts.note');
+    Route::post('/alerts/{alert}/report', [AlertController::class, 'sendReport'])->name('alerts.report');
+    Route::post('/alerts/{alert}/escalate', [AlertController::class, 'escalate'])->name('alerts.escalate');
+
     Route::post('/generate-attack', [AlertController::class, 'generateAttack'])->name('alerts.generate');
 
     Route::get('/history', [AlertController::class, 'history'])->name('alerts.history');
+
+    Route::get('/internal-threat-vault', function () {
+    return response()->view('Mr_21.vault');});
+
+    Route::get('/blue-team-ping', function () {
+    return response('Agadir SOC monitoring endpoint')
+        ->header('X-SOC-Flag', 'SOC{Mr.Limbo}');});
 });
 
 require __DIR__.'/auth.php';
