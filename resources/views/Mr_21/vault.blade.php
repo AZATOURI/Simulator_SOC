@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Internal Threat Vault</title>
     <style>
@@ -24,6 +25,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="box">
         <h1>Internal Threat Vault</h1>
@@ -35,9 +37,13 @@
 [INFO] SOC analyst session opened
 [WARN] Suspicious signal detected
 [HINT] Sometimes the fl__ag is hidden in plain sight
+[HINT] Flag format: SOC{...}
         </pre>
 
-        <p class="hidden">SOC{Tarot_club}</p>
+        <p class="hidden">
+            SHA256: 5b97d6721cb10fb0d9fb46d603c17cbe3a1105dddc8e4d097c2e520ccb6646f9
+        </p>
     </div>
 </body>
+
 </html>

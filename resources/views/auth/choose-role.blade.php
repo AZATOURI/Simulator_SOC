@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,8 +31,8 @@
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
             background-size: 30px 30px;
             opacity: 0.18;
             pointer-events: none;
@@ -59,7 +60,7 @@
             border-radius: 22px;
             background: rgba(15, 23, 42, 0.65);
             border: 1px solid rgba(56, 189, 248, 0.18);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
             backdrop-filter: blur(6px);
         }
 
@@ -99,9 +100,20 @@
         }
 
         @keyframes pulseBar {
-            0% { opacity: 0.35; transform: scaleX(0.85); }
-            50% { opacity: 1; transform: scaleX(1.1); }
-            100% { opacity: 0.35; transform: scaleX(0.85); }
+            0% {
+                opacity: 0.35;
+                transform: scaleX(0.85);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scaleX(1.1);
+            }
+
+            100% {
+                opacity: 0.35;
+                transform: scaleX(0.85);
+            }
         }
 
         .card h2 {
@@ -240,25 +252,27 @@
         <div class="brand-box">
             <div class="logo-wrap">
                 <!-- Simple custom logo -->
-                <svg width="45" height="45" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="45" height="45" viewBox="0 0 64 64" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <linearGradient id="g1" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#38BDF8"/>
-                            <stop offset="1" stop-color="#2563EB"/>
+                        <linearGradient id="g1" x1="8" y1="8" x2="56" y2="56"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#38BDF8" />
+                            <stop offset="1" stop-color="#2563EB" />
                         </linearGradient>
                     </defs>
 
                     <path d="M12 18C18 10 28 8 36 10C45 12 52 18 54 28C56 37 53 47 44 52C36 57 25 56 17 50"
-                          stroke="url(#g1)" stroke-width="4" stroke-linecap="round"/>
+                        stroke="url(#g1)" stroke-width="4" stroke-linecap="round" />
 
-                    <path d="M18 24C22 19 29 17 35 19C41 21 46 26 47 33C48 39 45 45 39 49"
-                          stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/>
+                    <path d="M18 24C22 19 29 17 35 19C41 21 46 26 47 33C48 39 45 45 39 49" stroke="url(#g1)"
+                        stroke-width="3.5" stroke-linecap="round" opacity="0.9" />
 
-                    <circle cx="15" cy="47" r="4.5" fill="#38BDF8"/>
-                    <circle cx="39" cy="49" r="3.5" fill="#60A5FA"/>
-                    <circle cx="54" cy="28" r="3" fill="#38BDF8"/>
+                    <circle cx="15" cy="47" r="4.5" fill="#38BDF8" />
+                    <circle cx="39" cy="49" r="3.5" fill="#60A5FA" />
+                    <circle cx="54" cy="28" r="3" fill="#38BDF8" />
 
-                    <path d="M15 47L24 38L32 41L39 49" stroke="#7DD3FC" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M15 47L24 38L32 41L39 49" stroke="#7DD3FC" stroke-width="2.5" stroke-linecap="round" />
                 </svg>
             </div>
 
@@ -292,15 +306,14 @@
                 </label>
 
                 <label class="section-label">Admin Code</label>
-                <input
-                    type="password"
-                    name="admin_code"
-                    placeholder="Required only for admin"
-                >
+                <input type="password" name="admin_code" placeholder="Required only for admin">
 
                 <div class="hint-box">
-                    If you select <strong>Admin</strong>, enter the secure admin code.
-                    Otherwise, leave it empty and continue as <strong>Analyste</strong>.
+                    Admin access is locked 🔐
+                    <br>
+                    Go to <strong>/-----</strong>, solve the challenge, then use the recovered code here.
+                    <br>
+                    If you are an Analyste, leave this field empty.
                 </div>
 
                 @error('role')
@@ -323,4 +336,5 @@
     </div>
 
 </body>
+
 </html>

@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /internal-threat-vault
 
+
 # SOC Hint: analysts should never ignore robots.txt
