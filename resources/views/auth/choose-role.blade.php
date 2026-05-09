@@ -309,10 +309,9 @@
                 <input type="password" name="admin_code" placeholder="Required only for admin">
 
                 <div class="hint-box">
-                    Admin access is locked 🔐
+                    Admin access is <b> SOC{ADMIN-2026}</b>
                     <br>
-                    Go to <strong>/-----</strong>, solve the challenge, then use the recovered code here.
-                    <br>
+                    <!-- Go to <strong>/-----</strong>, solve the challenge, then use the recovered code here. -->
                     If you are an Analyste, leave this field empty.
                 </div>
 
