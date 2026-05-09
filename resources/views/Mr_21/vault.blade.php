@@ -40,8 +40,8 @@
 [HINT] Flag format: SOC{...}
         </pre>
 
-        <p class="hidden">
-            SHA256: 5b97d6721cb10fb0d9fb46d603c17cbe3a1105dddc8e4d097c2e520ccb6646f9
+        <p class="hidden" >
+            5b97d6721cb10fb0d9fb46d603c17cbe3a1105dddc8e4d097c2e520ccb6646f9
         </p>
     </div>
 </body>
