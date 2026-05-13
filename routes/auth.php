@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
@@ -14,27 +15,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
 
     Route::get('choose-role', function () {
-    return view('auth.choose-role');
-})->middleware('guest')->name('choose-role');
+        return view('auth.choose-role');
+    })->middleware('guest')->name('choose-role');
 
-Route::post('choose-role', function (Request $request) {
-    $data = $request->validate([
-        'role' => ['required', 'in:admin,analyste'],
-        'admin_code' => ['nullable', 'string'],
-    ]);
+    Route::post('choose-role', function (Request $request) {
+        $data = $request->validate([
+            'role' => ['required', 'in:admin,analyste'],
+        ]);
 
-    if ($data['role'] === 'admin' && $request->admin_code !== env('ADMIN_REGISTER_CODE')) {
-        return back()->withErrors([
-            'admin_code' => 'Invalid admin code.',
-        ])->withInput();
-    }
+        session([
+            'selected_role' => $data['role'],
+        ]);
 
-    session([
-        'selected_role' => $data['role'],
-    ]);
-
-    return redirect()->route('register');
-})->middleware('guest')->name('choose-role.store');
+        return redirect()->route('register');
+    })->middleware('guest')->name('choose-role.store');
 
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');

@@ -239,10 +239,12 @@
     </style>
 </head>
 
+<!--
 <script>
     const signal = "U09De0NPTlNPTEVfU0lHTkFMX0RFVEVDVEVEfQ==";
     console.log("SOC Hint");
 </script>
+-->
 
 <body>
 
@@ -305,21 +307,7 @@
                     </div>
                 </label>
 
-                <label class="section-label">Admin Code</label>
-                <input type="password" name="admin_code" placeholder="Required only for admin">
-
-                <div class="hint-box">
-                    Admin access is <b> SOC{ADMIN-2026}</b>
-                    <br>
-                    <!-- Go to <strong>/-----</strong>, solve the challenge, then use the recovered code here. -->
-                    If you are an Analyste, leave this field empty.
-                </div>
-
                 @error('role')
-                    <div class="error-box">{{ $message }}</div>
-                @enderror
-
-                @error('admin_code')
                     <div class="error-box">{{ $message }}</div>
                 @enderror
 

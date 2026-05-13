@@ -258,7 +258,7 @@
                     <circle cx="54" cy="28" r="3" fill="#38BDF8"/>
 
                     <path d="M15 47L24 38L32 41L39 49" stroke="#7DD3FC" stroke-width="2.5" stroke-linecap="round"/>
-                    <!-- SOC{GG_CODMORT} -->
+
                 </svg>
             </div>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CTFController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AlertController;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +66,18 @@ Route::get('/blue-team-ping', function () {
     return response('Agadir SOC monitoring endpoint')
         ->header('X-SOC-Flag', 'SOC{Mr.Limbo}');
 });
+
+Route::get('/ctf', [CTFController::class, 'index'])->name('ctf.index');
+Route::post('/ctf/start', [CTFController::class, 'start'])->name('ctf.start');
+Route::post('/ctf/reset', [CTFController::class, 'reset'])->name('ctf.reset');
+
+Route::get('/ctf/challenge/{slug}', [CTFController::class, 'challenge'])->name('ctf.challenge');
+
+Route::post('/ctf/submit', [CTFController::class, 'submitGlobal'])->name('ctf.submit.global');
+Route::post('/ctf/submit/{slug}', [CTFController::class, 'submit'])->name('ctf.submit');
+
+Route::get('/ctf/soc-note', [CTFController::class, 'socNote'])->name('ctf.soc-note');
+Route::post('/ctf/lab/admin-gateway', [CTFController::class, 'adminGateway'])->name('ctf.lab.admin');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AlertController::class, 'dashboard'])->name('dashboard');
